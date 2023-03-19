@@ -90,7 +90,7 @@ end)
 menu.rainbow(rgb_text)
 
 menu.divider(menu.my_root(), "Additional")
-menu.list_select(menu.my_root(), 'First Label', {}, 'Change the first label in the watermak', {'Disable', 'Stand', 'Version', 'FemboyEdition', '(●__●)', 'OwO'}, settings.show_firstl, function (val)
+menu.list_select(menu.my_root(), 'First Label', {}, 'Change the first label in the watermak', {'Disable', 'Stand', 'Version', 'FemboyEdition', '^_-', 'OwO'}, settings.show_firstl, function (val)
     settings.show_firstl = val
 end)
 menu.toggle(menu.my_root(), 'Name', {}, 'Shows ur nickname in the watermark', function(val)
@@ -106,7 +106,7 @@ end, settings.show_date)
 menu.divider(menu.my_root(), "")
 menu.toggle_loop(menu.my_root(), "Enable Watermark", {"watermark"}, "Enable/Disable Watermark", function()
     if menu.is_in_screenshot_mode() then return end
-	local wm_text = (settings.show_firstl == 2 and 'Stand' or settings.show_firstl == 5 and '(●__●)' or settings.show_firstl == 6 and 'OwO' or settings.show_firstl == 4 and 'FemboyEdition' or settings.show_firstl == 3 and utils.editions[utils.edition+1] or '') .. (settings.show_name and ' | '.. players.get_name(players.user()) or '') .. (settings.show_players and NETWORK.NETWORK_IS_SESSION_STARTED() and ' | Players: '..#players.list(true, true, true) or '') .. (settings.show_date and os.date(' | %H:%M:%S ') or '')
+	local wm_text = (settings.show_firstl == 2 and 'Stand' or settings.show_firstl == 5 and '^_-' or settings.show_firstl == 6 and 'OwO' or settings.show_firstl == 4 and 'FemboyEdition' or settings.show_firstl == 3 and utils.editions[utils.edition+1] or '') .. (settings.show_name and ' | '.. players.get_name(players.user()) or '') .. (settings.show_players and NETWORK.NETWORK_IS_SESSION_STARTED() and ' | Players: '..#players.list(true, true, true) or '') .. (settings.show_date and os.date(' | %H:%M:%S ') or '')
 
     local tx_size = directx.get_text_size(wm_text, 0.5)
 
