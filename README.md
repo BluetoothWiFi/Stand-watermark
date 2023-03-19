@@ -21,9 +21,9 @@
 Watermark for stand.gg
 </div>
         
-## 🏠 [Homepage](https://github.com/BluetoothWiFi/Stand-watermark)
+## 🏠 [Homepage](https://github.com/BluetoothWiFi/Stand-watermark#readme)
 
-Visit this project repository [here](https://github.com/BluetoothWiFi/Stand-watermark) and let us know your opinion :D
+Visit this project repository [here](https://github.com/BluetoothWiFi/Stand-watermark#readme) and let us know your opinion :D
         
 ## 🌠 [Documents](https://github.com/BluetoothWiFi/Stand-watermark)
 
@@ -41,7 +41,7 @@ Check out our documentation for more information!
  **BluetoothWiFi**
 
 * Github: [@BluetoothWiFi](https://github.com/BluetoothWiFi)
-* Website: uggtiu.pw
+* Website: uggtiu
 
 ## 📝 License
 
