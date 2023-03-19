@@ -33,15 +33,15 @@ Check out our documentation for more information!
 
 ## 🌟 Issues/Contribute
 
-* Report your issues here: [Report Here]()
-* Contribute with your amazing ideas: [Contribute Here]()
+* Report your issues here: [Report Here](https://github.com/BluetoothWiFi/Stand-watermark/issues)
+* Contribute with your amazing ideas: [Contribute Here](https://github.com/BluetoothWiFi/Stand-watermark/pulls)
 
 ## 👤 Author
 
  **BluetoothWiFi**
 
 * Github: [@BluetoothWiFi](https://github.com/BluetoothWiFi)
-* Website: uggtiu
+* Website: [uggtiu.pw](https://uggtiu.pw)
 
 ## 📝 License
 
