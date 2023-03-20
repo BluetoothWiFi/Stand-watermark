@@ -107,6 +107,7 @@ menu.toggle_loop(menu.my_root(), "Enable Watermark", {"watermark"}, "Enable/Disa
     local function get_root_name()
         local root_name = menu.get_state(menu.ref_by_path("Stand>Settings>Appearance>Address Bar>Root Name"))
         root_name = root_name:gsub("{}", "")
+        root_name = root_name:gsub("Hidden", "")
         return root_name
     end
     local label_table = {
@@ -153,7 +154,7 @@ menu.toggle_loop(menu.my_root(), "Enable Watermark", {"watermark"}, "Enable/Disa
         )
     end
 
-    if Settings.00 then
+    if Settings.show_icon then
         directx.draw_texture(icon, 
             0.0055,
             0.0055,
@@ -177,32 +178,3 @@ menu.toggle_loop(menu.my_root(), "Enable Watermark", {"watermark"}, "Enable/Disa
 end)
 
 util.keep_running()
-%M:%S")
-    end
-    local tx_size = directx.get_text_size(wm_text, 0.5)
-
-    if Settings.show_icon then
-        directx.draw_rect(
-            x + Settings.add_x * 0.5,
-            y,
-            -(tx_size + 0.0105 + Settings.add_x),  -- add watermark size
-            0.025 + Settings.add_y,
-            Settings.bg_color
-        )
-    else
-        directx.draw_rect(
-            x + Settings.add_x * 0.5,
-            y,
-            -(tx_size + 0.005),  -- add watermark size
-            0.025 + Settings.add_y,
-            Settings.bg_color
-        )
-    end
-
-    if Settings.show_icon then
-        directx.draw_texture(icon, 
-            0.0055,
-            0.0055,
-            0.5,
-            0.5,
-            x - tx_size - 0.
