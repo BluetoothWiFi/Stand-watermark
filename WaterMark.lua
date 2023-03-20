@@ -1,6 +1,6 @@
 --[[
 **  github.com/BluetoothWiFi            **
-**  Version: 1.1.0		**
+**  Version: 1.1.1		**
 **  Script repo - https://github.com/BluetoothWiFi/Stand-watermark		**
 **  original script repo - github.com/IMXNOOBX/ScriptKid  **
 ]]
@@ -23,13 +23,27 @@ local editions = {
 local Settings <const> = {}
 Settings.show_icon = true
 Settings.show_name = true
-Settings.show_date = true
+Settings.show_time = true
 Settings.show_players = true
+Settings.show_tps = true
 Settings.show_firstl = 2
 Settings.add_x = 0.0055
 Settings.add_y = 0.0
 Settings.bg_color = {r = 0.8, g = 0.35, b = 0.8, a = 0.8}
 Settings.tx_color = {r = 1.0, g = 1.0, b = 1.0, a = 1.0}
+Settings.tps = 0
+Settings.time_format = 2
+
+--tps counter (very dodgy but works lol)
+local tps = 0
+util.create_tick_handler(function()
+    tps = tps + 1
+end)
+util.create_tick_handler(function()
+    util.yield(1000)
+    Settings.tps = tps
+    tps = 0
+end)
 
 -- Download Icon
 if not filesystem.exists(filesystem.scripts_dir() .. "/watermark/icon.png") then
@@ -95,9 +109,15 @@ end, Settings.show_name)
 menu.toggle(menu.my_root(), "Player Count", {}, "Shows Player Count in the watermark", function(val)
 	Settings.show_players = val
 end, Settings.show_players)
+menu.toggle(menu.my_root(), "TPS", {}, "Shows ticks per second in the watermark", function(val)
+	Settings.show_tps = val
+end, Settings.show_tps)
 menu.toggle(menu.my_root(), "Time", {}, "Shows OS time in the watermark", function(val)
-	Settings.show_date = val
-end, Settings.show_date)
+	Settings.show_time = val
+end, Settings.show_time)
+menu.list_select(menu.my_root(), "Time Format", {}, "Change the time format in the watermak", {"12HR", "24HR"}, Settings.time_format, function (val)
+    Settings.time_format = val
+end)
 
 -- Main Toggle
 menu.divider(menu.my_root(), "")
@@ -131,8 +151,13 @@ menu.toggle_loop(menu.my_root(), "Enable Watermark", {"watermark"}, "Enable/Disa
     if Settings.show_players and NETWORK.NETWORK_IS_SESSION_STARTED() then
         wm_text = wm_text.." | ".."Players: "..#players.list()
     end
-    if Settings.show_date then
-        wm_text = wm_text..os.date(" | %H:%M:%S")
+    if Settings.show_tps then
+        wm_text = wm_text.." | ".."TPS: "..Settings.tps
+    end
+    if Settings.show_time and Settings.time_format == 1 then
+        wm_text = wm_text..os.date(" | %I"):gsub("0", "")..os.date(":%M:%S")
+    elseif Settings.show_time and Settings.time_format == 2 then
+        wm_text = wm_text..os.date(" | %H"):gsub("0", "")..os.date(":%M:%S")
     end
     local tx_size = directx.get_text_size(wm_text, 0.5)
 
