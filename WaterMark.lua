@@ -1,6 +1,6 @@
 --[[
 **  github.com/BluetoothWiFi            **
-**  Version: 1.1.2		**
+**  Version: 1.1.3		**
 **  Script repo - https://github.com/BluetoothWiFi/Stand-watermark		**
 **  original script repo - github.com/IMXNOOBX/ScriptKid  **
 ]]
@@ -34,6 +34,7 @@ Settings.tx_color = {r = 1.0, g = 1.0, b = 1.0, a = 1.0}
 Settings.tps = 0
 Settings.time_format = 2
 Settings.tps_label = 1
+Settings.icon_sel = 1
 
 --tps counter (very dodgy but works lol)
 local tps = 0
@@ -46,13 +47,14 @@ util.create_tick_handler(function()
     tps = 0
 end)
 
--- Download Icon
+-- Download Icons
+--icon1
 if not filesystem.exists(filesystem.scripts_dir() .. "/watermark/icon.png") then
     util.toast("[FS|WaterMark] Watermark icon not found, downloading...")
     local path_root = filesystem.scripts_dir() .."watermark/"
     async_http.init("raw.githubusercontent.com", "/BluetoothWiFi/Stand-watermark/main/icon/stand_icon.png", function(req)
 		if not req then
-			util.toast("Failed to download watermak/stand_icon.png, please download it manually.\nThe link is copied in your clipboard.")
+			util.toast("Failed to download icon/stand_icon.png, please download it manually.\nThe link is copied in your clipboard.")
             util.copy_to_clipboard("https://github.com/BluetoothWiFi/Stand-watermark/blob/main/icon/stand_icon.png", true)
             return 
         end
@@ -61,12 +63,81 @@ if not filesystem.exists(filesystem.scripts_dir() .. "/watermark/icon.png") then
 		local f = io.open(path_root.."icon.png", "wb")
 		f:write(req)
 		f:close()
-		util.toast("Successfully downloaded icon.png from the repository.")
+		util.toast("Successfully downloaded icons from the repository.")
         icon = directx.create_texture(filesystem.scripts_dir() .. "/watermark/icon.png")
 	end)
 	async_http.dispatch()
 else
-    icon = directx.create_texture(filesystem.scripts_dir() .. "/watermark/icon.png")
+    icon = directx.create_texture(filesystem.scripts_dir() .. "/watermark/icon.png")  
+end
+
+--icon2
+if not filesystem.exists(filesystem.scripts_dir() .. "/watermark/icon2.png") then
+    util.toast("[FS|WaterMark] Watermark icon2 not found, downloading...")
+    local path_root = filesystem.scripts_dir() .."watermark/"
+    async_http.init("raw.githubusercontent.com", "/BluetoothWiFi/Stand-watermark/main/icon/stand_icon2.png", function(req)
+		if not req then
+			util.toast("Failed to download icon/stand_icon2.png, please download it manually.\nThe link is copied in your clipboard.")
+            util.copy_to_clipboard("https://github.com/BluetoothWiFi/Stand-watermark/blob/main/icon/stand_icon2.png", true)
+            return 
+        end
+
+        filesystem.mkdir(path_root)
+		local f = io.open(path_root.."icon2.png", "wb")
+		f:write(req)
+		f:close()
+		util.toast("Successfully downloaded icon2.png from the repository.")
+        icon2 = directx.create_texture(filesystem.scripts_dir() .. "/watermark/icon2.png")
+	end)
+	async_http.dispatch()
+else
+    icon2 = directx.create_texture(filesystem.scripts_dir() .. "/watermark/icon2.png")  
+end
+
+--icon3
+if not filesystem.exists(filesystem.scripts_dir() .. "/watermark/icon3.png") then
+    util.toast("[FS|WaterMark] Watermark icon3 not found, downloading...")
+    local path_root = filesystem.scripts_dir() .."watermark/"
+    async_http.init("raw.githubusercontent.com", "/BluetoothWiFi/Stand-watermark/main/icon/stand_icon3.png", function(req)
+		if not req then
+			util.toast("Failed to download icon/stand_icon3.png, please download it manually.\nThe link is copied in your clipboard.")
+            util.copy_to_clipboard("https://github.com/BluetoothWiFi/Stand-watermark/blob/main/icon/stand_icon3.png", true)
+            return 
+        end
+
+        filesystem.mkdir(path_root)
+		local f = io.open(path_root.."icon3.png", "wb")
+		f:write(req)
+		f:close()
+		util.toast("Successfully downloaded icon3.png from the repository.")
+        icon3 = directx.create_texture(filesystem.scripts_dir() .. "/watermark/icon3.png")
+	end)
+	async_http.dispatch()
+else
+    icon3 = directx.create_texture(filesystem.scripts_dir() .. "/watermark/icon3.png")  
+end
+
+--icon4
+if not filesystem.exists(filesystem.scripts_dir() .. "/watermark/icon4.png") then
+    util.toast("[FS|WaterMark] Watermark icon4 not found, downloading...")
+    local path_root = filesystem.scripts_dir() .."watermark/"
+    async_http.init("raw.githubusercontent.com", "/BluetoothWiFi/Stand-watermark/main/icon/stand_icon4.png", function(req)
+		if not req then
+			util.toast("Failed to download icon/stand_icon4.png, please download it manually.\nThe link is copied in your clipboard.")
+            util.copy_to_clipboard("https://github.com/BluetoothWiFi/Stand-watermark/blob/main/icon/stand_icon4.png", true)
+            return 
+        end
+
+        filesystem.mkdir(path_root)
+		local f = io.open(path_root.."icon4.png", "wb")
+		f:write(req)
+		f:close()
+		util.toast("Successfully downloaded icon4.png from the repository.")
+        icon4 = directx.create_texture(filesystem.scripts_dir() .. "/watermark/icon4.png")
+	end)
+	async_http.dispatch()
+else
+    icon4 = directx.create_texture(filesystem.scripts_dir() .. "/watermark/icon4.png")  
 end
 
 -- Settings
@@ -101,6 +172,9 @@ menu.divider(menu.my_root(), "Additional")
 menu.toggle(menu.my_root(), "Icon", {}, "Shows stand logo in the watermark", function(val)
 	Settings.show_icon = val
 end, Settings.show_icon)
+menu.list_select(menu.my_root(), "Icon Selector", {}, "Select ur icon for the watermark", {"icon.png", "icon2.png", "icon3.png", "icon4.png"}, Settings.icon_sel, function (val)
+    Settings.icon_sel = val
+end)
 menu.list_select(menu.my_root(), "Label", {}, "Change the first label in the watermak", {"Disable", "Stand", "Version", "Root Name", "FemboyEdition", "^_-", "OwO"}, Settings.show_firstl, function (val)
     Settings.show_firstl = val
 end)
@@ -122,7 +196,6 @@ end, Settings.show_time)
 menu.list_select(menu.my_root(), "Time Format", {}, "Change the time format in the watermak", {"12HR", "24HR"}, Settings.time_format, function (val)
     Settings.time_format = val
 end)
-
 -- Main Toggle
 menu.divider(menu.my_root(), "")
 menu.toggle_loop(menu.my_root(), "Enable Watermark", {"watermark"}, "Enable/Disable Watermark \n\n It is very temperamental with the 100 emoji showing", function()
@@ -185,8 +258,41 @@ menu.toggle_loop(menu.my_root(), "Enable Watermark", {"watermark"}, "Enable/Disa
         )
     end
 
-    if Settings.show_icon then
+    if Settings.show_icon and Settings.icon_sel == 1 then
         directx.draw_texture(icon, 
+            0.0055,
+            0.0055,
+            0.5,
+            0.5,
+            x - tx_size - 0.0055,
+            y + 0.013,
+            0,
+            {r = 1.0, g = 1.0, b = 1.0, a = 1.0}
+        )
+    elseif Settings.show_icon and Settings.icon_sel == 2 then
+        directx.draw_texture(icon2, 
+            0.0055,
+            0.0055,
+            0.5,
+            0.5,
+            x - tx_size - 0.0055,
+            y + 0.013,
+            0,
+            {r = 1.0, g = 1.0, b = 1.0, a = 1.0}
+        )
+    elseif Settings.show_icon and Settings.icon_sel == 3 then
+        directx.draw_texture(icon3, 
+            0.0055,
+            0.0055,
+            0.5,
+            0.5,
+            x - tx_size - 0.0055,
+            y + 0.013,
+            0,
+            {r = 1.0, g = 1.0, b = 1.0, a = 1.0}
+        )
+    elseif Settings.show_icon and Settings.icon_sel == 4 then
+        directx.draw_texture(icon4, 
             0.0055,
             0.0055,
             0.5,
