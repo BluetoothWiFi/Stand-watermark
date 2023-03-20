@@ -1,6 +1,6 @@
 --[[
 **  github.com/BluetoothWiFi            **
-**  Version: 1.1.1		**
+**  Version: 1.1.2		**
 **  Script repo - https://github.com/BluetoothWiFi/Stand-watermark		**
 **  original script repo - github.com/IMXNOOBX/ScriptKid  **
 ]]
@@ -33,6 +33,7 @@ Settings.bg_color = {r = 0.8, g = 0.35, b = 0.8, a = 0.8}
 Settings.tx_color = {r = 1.0, g = 1.0, b = 1.0, a = 1.0}
 Settings.tps = 0
 Settings.time_format = 2
+Settings.tps_label = 1
 
 --tps counter (very dodgy but works lol)
 local tps = 0
@@ -109,9 +110,12 @@ end, Settings.show_name)
 menu.toggle(menu.my_root(), "Player Count", {}, "Shows Player Count in the watermark", function(val)
 	Settings.show_players = val
 end, Settings.show_players)
-menu.toggle(menu.my_root(), "TPS", {}, "Shows ticks per second in the watermark\nNOTE: TPS is similar to FPS, but they are not", function(val)
+menu.toggle(menu.my_root(), "TPS", {}, "Shows ticks per second in the watermark", function(val)
 	Settings.show_tps = val
 end, Settings.show_tps)
+menu.list_select(menu.my_root(), "TPS label", {}, "Change the TPS label in the watermak\nNOTE: TPS is similar to FPS, but they are not", {"TPS", "FPS"}, Settings.tps_label, function (val)
+    Settings.tps_label = val
+end)
 menu.toggle(menu.my_root(), "Time", {}, "Shows OS time in the watermark", function(val)
 	Settings.show_time = val
 end, Settings.show_time)
@@ -151,8 +155,10 @@ menu.toggle_loop(menu.my_root(), "Enable Watermark", {"watermark"}, "Enable/Disa
     if Settings.show_players and NETWORK.NETWORK_IS_SESSION_STARTED() then
         wm_text = wm_text.." | ".."Players: "..#players.list()
     end
-    if Settings.show_tps then
+    if Settings.show_tps and Settings.tps_label == 1 then
         wm_text = wm_text.." | ".."TPS: "..Settings.tps
+    elseif Settings.show_tps and Settings.tps_label == 2 then
+        wm_text = wm_text.." | ".."FPS: "..Settings.tps
     end
     if Settings.show_time and Settings.time_format == 1 then
         wm_text = wm_text..os.date(" | %I"):gsub("0", "")..os.date(":%M:%S")
