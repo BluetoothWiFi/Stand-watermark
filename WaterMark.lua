@@ -109,7 +109,7 @@ end, Settings.show_name)
 menu.toggle(menu.my_root(), "Player Count", {}, "Shows Player Count in the watermark", function(val)
 	Settings.show_players = val
 end, Settings.show_players)
-menu.toggle(menu.my_root(), "TPS", {}, "Shows ticks per second in the watermark", function(val)
+menu.toggle(menu.my_root(), "TPS", {}, "Shows ticks per second in the watermark\nNOTE: TPS is similar to FPS, but they are not", function(val)
 	Settings.show_tps = val
 end, Settings.show_tps)
 menu.toggle(menu.my_root(), "Time", {}, "Shows OS time in the watermark", function(val)
