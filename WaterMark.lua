@@ -89,7 +89,7 @@ Settings.tx_color = {r = 1.0, g = 1.0, b = 1.0, a = 1.0}
 Settings.tps = 0
 Settings.time_format = 2
 Settings.tps_label = 1
-Settings.icon_sel = 1
+Settings.icon_sel = 2
 Settings.fps = 60
 
 --tick handler for gif loading
