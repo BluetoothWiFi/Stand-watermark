@@ -27,11 +27,11 @@ local function download_icon(icon_name)
     if not filesystem.exists(filesystem.scripts_dir().."\\watermark\\"..icon_name..".png") then
         util.toast("[FS|WaterMark] Watermark icon not found, downloading...")
         local path_root = filesystem.scripts_dir() .."watermark/"
-        async_http.init("raw.githubusercontent.com", "/BluetoothWiFi/Stand-watermark/main/icon/"..icon_name..".png", function(req)
+        async_http.init("raw.githubusercontent.com", "/BluetoothWiFi/Stand-watermark/main/watermark/"..icon_name..".png", function(req)
             if not req then
                 util.toast("Failed to download "..icon_name..".png")
-                --util.toast("Failed to download icon/stand_icon.png, please download it manually.\nThe link is copied in your clipboard.")
-                --util.copy_to_clipboard("https://github.com/BluetoothWiFi/Stand-watermark/blob/main/icon/stand_icon.png", true) --need to make an edit this stuff
+                --util.toast("Failed to download watermark/stand_icon.png, please download it manually.\nThe link is copied in your clipboard.")
+                --util.copy_to_clipboard("https://github.com/BluetoothWiFi/Stand-watermark/blob/main/watermark/stand_icon.png", true) --need to make an edit this stuff
                 return 
             end
 
