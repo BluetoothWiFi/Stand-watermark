@@ -1,6 +1,6 @@
 --[[
 **  github.com/BluetoothWiFi            **
-**  Version: 1.1.4		**
+**  Version: 1.1.5		**
 **  Script repo - https://github.com/BluetoothWiFi/Stand-watermark		**
 **  original script repo - github.com/IMXNOOBX/ScriptKid  **
 ]]
