@@ -221,9 +221,9 @@ menu.toggle_loop(menu.my_root(), "Enable Watermark", {"watermark"}, "Enable/Disa
         wm_text = wm_text.." | ".."FPS: "..Settings.tps
     end
     if Settings.show_time and Settings.time_format == 1 then
-        wm_text = wm_text..os.date(" | %I"):gsub("0", "")..os.date(":%M:%S")
+        wm_text = wm_text..os.date(" | %I:%M:%S"):gsub("0", "O") -- remove ":gsub("0", "O")" if you don't want to see O instead of 0
     elseif Settings.show_time and Settings.time_format == 2 then
-        wm_text = wm_text..os.date(" | %H"):gsub("0", "")..os.date(":%M:%S")
+        wm_text = wm_text..os.date(" | %H:%M:%S"):gsub("0", "O") -- remove ":gsub("0", "O")" if you don't want to see O instead of 0
     end
     local tx_size = directx.get_text_size(wm_text, 0.5)
 
